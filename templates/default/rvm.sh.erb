@@ -1,0 +1,5 @@
+#!/bin/bash -l
+
+if [ "$UID" -ne 0 ]
+  then [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" && rvm default
+fi
