@@ -31,3 +31,9 @@ SASS, Compass, Observer and Rev. Overide using:
 
 * Decouple Vagrant from base. 
 * Assign gems and users to own arrays. 
+
+### Reasoning
+
+This cookbook is a wrapper for [chef-rvm](https://github.com/fnichol/chef-rvm). It installs one additional file in /etc/profile.d to ensure the proper default ruby is set for each user session. This also installs the Gems Beyond9 needs to develop with. Feel free to modify and extend for your own purposes. 
+
+We do this in a cookbook instead of a role based on the [Berkshelf Way](http://www.getchef.com/blog/chefconf-talks/the-berkshelf-way-jamie-winsor/) talk by Jamie Winsor.
