@@ -1,5 +1,3 @@
-site :opscode
+source "https://supermarket.getchef.com"
 
 metadata
-
-cookbook 'rvm', github: 'fnichol/chef-rvm'

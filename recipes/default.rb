@@ -5,12 +5,32 @@ template "/home/vagrant/.gemrc" do
   mode 0644
 end
 
-include_recipe "rvm::user"
-include_recipe "rvm::vagrant"
+execute "rvm-key" do
+  user "vagrant"
+  cwd ::Dir.home('vagrant')
+  command "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
+  action :run
+  environment ({'HOME' => '/home/vagrant'})
+end
 
-## commenting out for right now. Erratic. Will specify RVM ruby from .bashrc.
+execute "rvm-install" do
+  user "vagrant"
+  cwd ::Dir.home('vagrant')
+  command "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.4"
+  action :run
+  environment ({'HOME' => '/home/vagrant'})
+end
 
-#template "/etc/profile.d/rvm.sh" do
-#  source "rvm.sh.erb"
-#  mode "0644"
-#end
+%w{ruby-devel rubygems}.each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
+execute "gem-update-system" do
+  user "root"
+  command "gem update --system"
+  action :run
+end
+
+include_recipe "b9ruby::gems"

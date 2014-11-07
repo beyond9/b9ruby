@@ -1,0 +1,1 @@
+override["b9ruby"]["gems"] = ['sass', 'compass', 'observr', 'rev', 'jekyll']
